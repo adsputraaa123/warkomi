@@ -15,7 +15,7 @@ export default async function dashboard({
   const param = await searchParams;
   const categories = param.categories
     ? param.categories.split(",")
-    : ["coffee", "dessert", "foods", "drinks"];
+    : ["coffee", "dessert", "food", "drink"];
 
   const item = await prisma.product.findMany({
     where: {

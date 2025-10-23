@@ -71,12 +71,12 @@ const Filter = () => {
               className="hidden peer"
               type="checkbox"
               name="categories"
-              id="foods"
-              value="foods"
+              id="food"
+              value="food"
               onChange={(e) => handleChange(e)}
             />
             <label
-              htmlFor="foods"
+              htmlFor="food"
               className="flex items-center justify-between border-b-1 py-2 px-5 rounded-t-xl peer-checked:bg-[#660B05] peer-checked:text-white cursor-pointer tracking-wide"
             >
               Foods <Ham />
@@ -87,12 +87,12 @@ const Filter = () => {
               className="hidden peer"
               type="checkbox"
               name="categories"
-              id="drinks"
-              value="drinks"
+              id="drink"
+              value="drink"
               onChange={(e) => handleChange(e)}
             />
             <label
-              htmlFor="drinks"
+              htmlFor="drink"
               className="flex items-center justify-between border-b-1 py-2 px-5 peer-checked:bg-[#660B05] peer-checked:text-white cursor-pointer tracking-wide"
             >
               Drinks <GlassWater />
