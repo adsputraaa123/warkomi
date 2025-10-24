@@ -5,7 +5,11 @@ import Filter from "@/components/filter";
 import { DashboardProvider } from "@/context/DashboardContext";
 import ProductCard from "@/components/products-card";
 
-export default async function dashboard() {
+export default async function dashboard({
+  searchParams,
+}: {
+  searchParams: Promise<{ id: string }>;
+}) {
   const products = await prisma.product.findMany();
 
   return (
@@ -22,7 +26,7 @@ export default async function dashboard() {
               priority={true}
               style={{ width: "auto", height: "30px" }}
             ></Image>
-            <Cart />
+            <Cart searchParams={searchParams} />
           </nav>
           <div
             id="product"
