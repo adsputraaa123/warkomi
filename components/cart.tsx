@@ -121,6 +121,7 @@ const Cart = ({ searchParams }: { searchParams: Promise<{ id: string }> }) => {
                   setDisable(true);
                   const { message } = await createOrder(cart, tableId);
                   if (message === "Invalid URL") {
+                    toast.dismiss();
                     toast.error(message, {
                       icon: "🔴",
                       duration: 1000,
@@ -130,6 +131,7 @@ const Cart = ({ searchParams }: { searchParams: Promise<{ id: string }> }) => {
                     });
                     setDisable(false);
                   } else if (message === "Cart's empty") {
+                    toast.dismiss();
                     toast.error(message, {
                       icon: "🟡",
                       duration: 1000,

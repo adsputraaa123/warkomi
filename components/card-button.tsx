@@ -13,6 +13,7 @@ const Cardbutton = (product: product) => {
       className="rounded-full p-1 bg-black hover:cursor-pointer"
       onClick={() => {
         addToCart(product);
+        toast.dismiss();
         toast.success("Added to cart", {
           icon: "🟢",
           duration: 1000,
