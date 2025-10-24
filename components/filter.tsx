@@ -1,25 +1,20 @@
 "use client";
 
 import { ListFilter } from "lucide-react";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { GlassWater, Dessert, Bean, Ham } from "lucide-react";
 import { UseDashboardContext } from "@/context/DashboardContext";
 
 const Filter = () => {
-  const pathName = usePathname();
-  const searchParams = useSearchParams();
-  const { replace } = useRouter();
-
-  const { pressFilter, pressCart, setPressFilter, setPressCart } =
+  const { pressFilter, pressCart, setPressFilter, setPressCart, setCategory } =
     UseDashboardContext();
-  const [category, setCategory] = useState<string[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategory((c) => {
       const newCategory = e.target.checked
         ? [...c, e.target.value]
-        : c.filter((c) => c !== e.target.value);
+        : c.filter((c) => c != e.target.value);
+
       return newCategory;
     });
   };
@@ -36,16 +31,6 @@ const Filter = () => {
       }
     }
   }, [pressFilter, pressCart]);
-
-  useEffect(() => {
-    const param = new URLSearchParams(searchParams);
-    if (category.length === 0) {
-      param.delete("categories");
-    } else {
-      param.set("categories", category.join(","));
-    }
-    replace(`${pathName}?${param.toString()}`);
-  }, [category, pathName, searchParams, replace]);
 
   return (
     <>

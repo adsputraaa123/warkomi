@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { Plus } from "lucide-react";
 
 const Cardbutton = (product: product) => {
-  const { cart, addToCart } = UseDashboardContext();
+  const { addToCart } = UseDashboardContext();
 
   return (
     <button

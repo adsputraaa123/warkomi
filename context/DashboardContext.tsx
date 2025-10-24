@@ -1,6 +1,6 @@
 "use client";
 
-import {
+import React, {
   createContext,
   ReactNode,
   useContext,
@@ -26,10 +26,12 @@ interface contextType {
   price: number;
   pressCart: boolean;
   pressFilter: boolean;
+  category: string[];
   addToCart: (product: product) => void;
   removeFromCart: (product: product) => void;
   setPressCart: React.Dispatch<React.SetStateAction<boolean>>;
   setPressFilter: React.Dispatch<React.SetStateAction<boolean>>;
+  setCategory: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const contextDefaultValue = {
@@ -37,10 +39,12 @@ const contextDefaultValue = {
   price: 0,
   pressCart: false,
   pressFilter: false,
+  category: [],
   addToCart: () => {},
   removeFromCart: () => {},
   setPressCart: () => {},
   setPressFilter: () => {},
+  setCategory: () => {},
 };
 
 const dashboardContext = createContext<contextType>(contextDefaultValue);
@@ -50,6 +54,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
   const [price, setPrice] = useState<number>(0);
   const [pressCart, setPressCart] = useState<boolean>(false);
   const [pressFilter, setPressFilter] = useState<boolean>(false);
+  const [category, setCategory] = useState<string[]>([]);
 
   useEffect(() => {
     if (!sessionStorage.getItem("cart") || !sessionStorage.getItem("price")) {
@@ -125,10 +130,12 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
         price,
         pressCart,
         pressFilter,
+        category,
         addToCart,
         removeFromCart,
         setPressCart,
         setPressFilter,
+        setCategory,
       }}
     >
       {children}
