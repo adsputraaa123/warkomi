@@ -4,7 +4,7 @@ import { UseDashboardContext } from "@/context/DashboardContext";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createOrder } from "@/actions/actions";
 import toast from "react-hot-toast";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import { Minus, Plus, ShoppingCart } from "lucide-react";
 
@@ -59,7 +59,11 @@ const Cart = () => {
         } transition-all duration-250 h-dvh flex flex-col absolute top-0 right-0 w-full sm:w-130 p-5 pt-21`}
       >
         <div className="shadow-md bg-white h-full rounded-xl flex flex-col flex-auto p-3">
-          <div className="font-bold text-xl">{`Table ${params.get("id")}`}</div>
+          <Suspense>
+            <div className="font-bold text-xl">{`Table ${params.get(
+              "id"
+            )}`}</div>
+          </Suspense>
           <div className="flex-auto no-scrollbar overflow-auto my-3">
             {cart.map((item) => (
               <div key={item.product.id} className="flex mb-5">
